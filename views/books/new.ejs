@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<form id="new-form" action="/books" method="POST">
+    <label>Title:</label>
+    <input type="text" name="title">
+    <label>Author:</label>
+    <input type="text" name="author">
+    <label>Country:</label>
+    <input type="text" name="country">
+    <label>Language:</label>
+    <input type="text" name="language">
+    <label>Publisher:</label>
+    <input type="text" name="publisher">
+    <label>Publication Date:</label>
+    <input type="text" name="publicationDate">
+    <label>Pages:</label>
+    <input type="number" name="pages">
+    <input type="submit" value="Add Book">
+  </form>
+
+<%- include('../partials/footer') %>
