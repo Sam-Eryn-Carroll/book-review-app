@@ -1,10 +1,12 @@
 const Book = require('../models/book');
+const Genre = require('../models/genre')
 
 module.exports = {
     index,
     new: newBook,
     create,
-    show
+    show,
+    addToGenres
 }
 
 function index(req, res) {
@@ -26,7 +28,25 @@ function create(req, res) {
 }
 
 function show(req, res) {
+    Book.findById(req.params.id)
+        .populate('genres').exec(function(err, book) {
+            Genre.find(
+              {
+                _id: {
+                  $nin: book.genres
+                }
+              },
+        function(err, genres) {
+        res.render('books/show', {title: 'Book Details', book, genres})
+        })   
+    })
+}
+
+function addToGenres(req, res) {
     Book.findById(req.params.id, function(err, book) {
-        res.render('books/show', {title: 'Book Details', book})
-    });
+        book.genres.push(req.body.genreId)
+        book.save(function(err) {
+          res.redirect(`/books/${book._id}`)
+        })
+      })
 }

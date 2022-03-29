@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<div>Before adding, please ensure that the Genre is not in the following list:</div>
+<section id="badge-container">
+  <% genres.forEach(function(g) { %>
+    <article class="badge"><%= g.genre %></article>
+  <% }) %>
+</section>
+
+<form id="add-performer-form" action="/genres" method="POST">
+  <label>Genre:</label>
+  <input type="text" name="genre">
+  <input type="submit" value="Add Genre">
+</form>
+
+<%- include('../partials/footer') %>

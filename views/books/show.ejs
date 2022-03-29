@@ -15,8 +15,22 @@
     <div><%= book.publicationDate %></div>
     <div>Pages: </div>
     <div><%= book.pages %></div>
-    
+    <div>Genres:</div>
+  <ul>
+    <%- book.genres.map(g => 
+      `<li>${g.genre}</li>`
+    ).join('') %>
+  </ul>
   </section>
+
+  <form id="add-per-to-performers" action="/books/<%=book._id%>/genres" method="POST">
+  <select name="genreId">
+    <%- genres.map(g => 
+      `<option value="${g._id}">${g.genre}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add to Genres</button>
+</form>
 
   <br><br>
 <h2>Reviews</h2>

@@ -19,6 +19,12 @@ const bookSchema = new Schema({
     publisher: {type: Array},
     publicationDate: {type: String},
     pages: {type: Number},
+    genres: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Genre'
+        }
+      ],
     reviews: [reviewSchema]
 })
 

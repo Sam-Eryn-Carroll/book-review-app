@@ -6,5 +6,6 @@ router.get('/', booksCtrl.index);
 router.get('/new', booksCtrl.new);
 router.get('/:id', booksCtrl.show);
 router.post('/', booksCtrl.create);
+router.post('/:id/genres', booksCtrl.addToGenres)
 
 module.exports = router;
