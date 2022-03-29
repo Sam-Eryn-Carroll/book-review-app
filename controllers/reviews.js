@@ -1,7 +1,8 @@
 const Book = require('../models/book')
 
 module.exports = {
-    create
+    create,
+    delete: deleteReview
 }
 
 function create(req, res) {
@@ -14,4 +15,17 @@ function create(req, res) {
             res.redirect(`/books/${book._id}`)
         })
     })
+}
+
+function deleteReview(req, res, next) {
+  Book.findOne({'reviews._id': req.params.id}).then(function(book) {
+    const review = book.reviews.id(req.params.id);
+    if (!review.user.equals(req.user._id)) return res.redirect(`/books/${book._id}`);
+    review.remove();
+    book.save().then(function() {
+      res.redirect(`/books/${book._id}`);
+    }).catch(function(err) {
+      return next(err);
+    });
+  });
 }
