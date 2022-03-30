@@ -7,7 +7,8 @@ module.exports = {
     create,
     show,
     addToGenres,
-    allBooks
+    byTitle,
+    //byAuthor
 }
 
 function index(req, res) {
@@ -53,15 +54,35 @@ function addToGenres(req, res) {
       })
 }
 
-function allBooks(req, res) {
+
+function byTitle(req, res) {
     // let bookQuery = req.body.title ? {title: new RegExp(req.body.title, 'i')} : {};
     Book.find({title: req.query.title}, function(err, books) {
-        //
-        res.render('books/index', {
-            books,
-            user: req.user,
-            titleSearch: req.query.title,
-            title: "All Books"
-        })
-    })
+       // Book.find({author: req.query.author}, function(err, books) {
+            res.render('books/index', {
+                books,
+                user: req.user,
+                titleSearch: req.query.title,
+                title: "All Books"
+            })
+        }), Book.find({author: req.query.author}, function(err, books) {
+            res.render('books/index', {
+                books,
+                user: req.user,
+                authorSearch: req.query.author,
+                title: "All Books"
+        })     
+})
 }
+
+// function byAuthor(req, res) {
+    
+//     Book.find({author: req.query.author}, function(err, books) {
+//         res.render('books/index', {
+//             books,
+//             user: req.user,
+//             authorSearch: req.query.author,
+//             title: "All Books"
+//         })
+//     })
+// }

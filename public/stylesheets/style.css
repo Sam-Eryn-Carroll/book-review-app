@@ -73,13 +73,13 @@ nav > a.active {
   height: 30px;
 }
 
-#new-form {
+#new-form, #search-form {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(2, minmax(auto, 10rem));
 }
 
-#new-form input[type="submit"] {
+#new-form, #search-form input[type="submit"] {
   grid-column: span 2;
   width: 10rem;
   margin-left: auto;

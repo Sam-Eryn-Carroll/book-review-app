@@ -18,12 +18,14 @@
     <form id="add-performer-form" action="/search" method="GET">
       <label>Title</label>
       <input type="text" name="title">
+      <label>Author</label>
+      <input type="text" name="author">
+      <label>Genre</label>
+      <input type="text" name="genre">
       <input type="submit" value="search">
     </form>
     <tbody>
-      <% if (title) { %>
-
-      <% } %>
+      
       <% books.forEach(function(b) { %>
         <tr>
           <td><%= b.title %></td>
