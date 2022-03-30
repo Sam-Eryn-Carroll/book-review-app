@@ -15,7 +15,15 @@
         <th></th>
       </tr>
     </thead>
+    <form id="add-performer-form" action="/search" method="GET">
+      <label>Title</label>
+      <input type="text" name="title">
+      <input type="submit" value="search">
+    </form>
     <tbody>
+      <% if (title) { %>
+
+      <% } %>
       <% books.forEach(function(b) { %>
         <tr>
           <td><%= b.title %></td>
@@ -29,6 +37,6 @@
         </tr>
         <% }); %>
       </tbody>
-    </table>
 
+    </table>
 <%- include('../partials/footer') %>
