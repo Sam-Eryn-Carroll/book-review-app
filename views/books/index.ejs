@@ -15,7 +15,7 @@
         <th></th>
       </tr>
     </thead>
-    <form id="add-performer-form" action="/search" method="GET">
+    <form id="search-form" action="/search" method="GET">
       <label>Title</label>
       <input type="text" name="title">
       <label>Author</label>
@@ -25,7 +25,6 @@
       <input type="submit" value="search">
     </form>
     <tbody>
-      
       <% books.forEach(function(b) { %>
         <tr>
           <td><%= b.title %></td>
@@ -36,6 +35,7 @@
           <td><%= b.publicationDate %></td>
           <td><%= b.pages %></td>
           <td><a href="/books/<%= b._id %>">DETAILS</a></td>
+          <td><a href="/books//<%= b._id %>/new">>A</a></td>
         </tr>
         <% }); %>
       </tbody>

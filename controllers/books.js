@@ -8,7 +8,7 @@ module.exports = {
     show,
     addToGenres,
     byTitle,
-    //byAuthor
+    update
 }
 
 function index(req, res) {
@@ -73,6 +73,13 @@ function byTitle(req, res) {
                 title: "All Books"
         })     
 })
+}
+
+function update(req, res) {
+    Book.findById(req.params.id, function(err, book) {
+        res.render('books/new', {title: 'Edit books'});
+    })
+    
 }
 
 // function byAuthor(req, res) {

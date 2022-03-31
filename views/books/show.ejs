@@ -22,8 +22,8 @@
     ).join('') %>
   </ul>
   </section>
-
-  <form id="add-per-to-performers" action="/books/<%=book._id%>/genres" method="POST">
+<% if (user) { %>
+  <form id="add-gen-to-genres" action="/books/<%=book._id%>/genres" method="POST">
   <select name="genreId">
     <%- genres.map(g => 
       `<option value="${g._id}">${g.genre}</option>`
@@ -31,7 +31,7 @@
   </select>
   <button type="submit">Add to Genres</button>
 </form>
-
+<% } %>
   <br><br>
 <h2>Reviews</h2>
 <% if (user) { %>

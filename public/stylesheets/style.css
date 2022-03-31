@@ -72,14 +72,18 @@ nav > a.active {
 .login img {
   height: 30px;
 }
-
-#new-form, #search-form {
+#search-form {
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(3, minmax(auto, 10rem));
+}
+#new-form {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(2, minmax(auto, 10rem));
 }
 
-#new-form, #search-form input[type="submit"] {
+#new-form input[type="submit"] {
   grid-column: span 2;
   width: 10rem;
   margin-left: auto;
