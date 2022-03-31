@@ -20,8 +20,6 @@
       <input type="text" name="title">
       <label>Author</label>
       <input type="text" name="author">
-      <label>Genre</label>
-      <input type="text" name="genre">
       <input type="submit" value="search">
     </form>
     <tbody>
@@ -35,7 +33,7 @@
           <td><%= b.publicationDate %></td>
           <td><%= b.pages %></td>
           <td><a href="/books/<%= b._id %>">DETAILS</a></td>
-          <td><a href="/books//<%= b._id %>/new">>A</a></td>
+          <td><a href="/books/<%= b._id %>/edit">>A</a></td>
         </tr>
         <% }); %>
       </tbody>

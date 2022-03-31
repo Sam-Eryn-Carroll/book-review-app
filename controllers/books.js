@@ -7,8 +7,9 @@ module.exports = {
     create,
     show,
     addToGenres,
-    byTitle,
-    update
+    byAll,
+    edit,
+    update : updateBook
 }
 
 function index(req, res) {
@@ -55,10 +56,8 @@ function addToGenres(req, res) {
 }
 
 
-function byTitle(req, res) {
-    // let bookQuery = req.body.title ? {title: new RegExp(req.body.title, 'i')} : {};
+function byAll(req, res) {
     Book.find({title: req.query.title}, function(err, books) {
-       // Book.find({author: req.query.author}, function(err, books) {
             res.render('books/index', {
                 books,
                 user: req.user,
@@ -75,21 +74,24 @@ function byTitle(req, res) {
 })
 }
 
-function update(req, res) {
-    Book.findById(req.params.id, function(err, book) {
-        res.render('books/new', {title: 'Edit books'});
+function edit(req, res) {
+    Book.findOne({'books._id': req.params.id}, function(err, book) {
+        res.render('books/edit', {title: 'Edit books', book});
     })
     
 }
 
-// function byAuthor(req, res) {
-    
-//     Book.find({author: req.query.author}, function(err, books) {
-//         res.render('books/index', {
-//             books,
-//             user: req.user,
-//             authorSearch: req.query.author,
-//             title: "All Books"
-//         })
-//     })
-// }
+function updateBook(req, res) {
+    Book.findOne({'books._id': req.params.id}, function (err, book) {
+        book.title = req.body.title
+        book.author = req.body.author
+        book.country = req.body.country
+        book.language = req.body.language
+        book.publisher = req.body.publisher
+        book.publicationDate = req.body.publicationDate
+        book.pages = req.body.pages
+        book.save(function(err) {
+        res.redirect(`/books/${book._id}`);
+      });
+    })
+}
