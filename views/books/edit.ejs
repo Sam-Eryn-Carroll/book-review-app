@@ -1,6 +1,7 @@
 <%- include('../partials/header') %>
 
-<form id="new-form" action="/books/<%= book._id %>?_method=PUT" method="POST">
+<form id="edit-form" action="/books/<%= book._id %>?_method=PUT" method="POST">
+    <% console.log(book._id) %>
     <label>Title:</label>
     <input type="text" name="title" value="<%= book.title %>">
     <label>Author:</label>

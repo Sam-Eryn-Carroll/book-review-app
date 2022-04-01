@@ -75,15 +75,15 @@ function byAll(req, res) {
 }
 
 function edit(req, res) {
-    Book.findOne({'books._id': req.params.id}, function(err, book) {
+    Book.findById(req.params.id, function(err, book) {
         res.render('books/edit', {title: 'Edit books', book});
     })
     
 }
 
 function updateBook(req, res) {
-    Book.findOne({'books._id': req.params.id}, function (err, book) {
-        book.title = req.body.title
+    Book.findById(req.params.id, function (err, book) {
+        book.title = req.body.title,
         book.author = req.body.author
         book.country = req.body.country
         book.language = req.body.language
